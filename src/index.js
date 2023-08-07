@@ -6,6 +6,7 @@ const app = express();
 const port = 3001;
 const route = require("./routes");
 const db = require("./config/db");
+const methodOverride = require("method-override");
 const { MongoClient } = require("mongodb");
 
 // connect db
@@ -23,6 +24,8 @@ app.use(
 );
 app.use(express.json());
 
+app.use(methodOverride("_method"));
+
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   next();
@@ -31,7 +34,10 @@ app.use((req, res, next) => {
 app.engine(
   "hbs",
   handlebars.engine({
-    extname: ".hbs"
+    extname: ".hbs",
+    helpers: {
+      sum: (a, b) => a + b
+    }
   })
 );
 app.set("view engine", "hbs");

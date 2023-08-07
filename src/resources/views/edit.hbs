@@ -1,0 +1,89 @@
+<h3 class="container my-4">Edit product</h3>
+<form
+  method="POST"
+  action="/products/{{nuxtApi._id}}?_method=PUT"
+  class="container my-4"
+>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Brand</label>
+    <input
+      type="text"
+      value="{{nuxtApi.brand}}"
+      class="form-control"
+      name="brand"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">New Arrival</label>
+    <input
+      type="text"
+      value="{{nuxtApi.newArrival}}"
+      class="form-control"
+      name="newArrival"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Gender</label>
+    <input
+      type="text"
+      value="{{nuxtApi.gender}}"
+      class="form-control"
+      name="gender"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Category</label>
+    <input
+      type="text"
+      value="{{nuxtApi.category}}"
+      class="form-control"
+      name="category"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Sale</label>
+    <input
+      type="text"
+      value="{{nuxtApi.sale}}"
+      class="form-control"
+      name="sale"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Name</label>
+    <input
+      type="text"
+      value="{{nuxtApi.name}}"
+      class="form-control"
+      name="name"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Image</label>
+    <input
+      type="text"
+      value="{{nuxtApi.image}}"
+      class="form-control"
+      name="image"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Price</label>
+    <input
+      type="text"
+      value="{{nuxtApi.price}}"
+      class="form-control"
+      name="price"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Quantity</label>
+    <input
+      type="text"
+      value="{{nuxtApi.quantity}}"
+      class="form-control"
+      name="quantity"
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Lưu lại</button>
+</form>
