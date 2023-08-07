@@ -5,7 +5,7 @@ class SiteController {
     Article.find()
       .then((Articles, err) => {
         console.log(Articles, "Articles");
-        res.json(Articles);
+        res.render("home");
       })
       .catch(() => {
         res.status(400).json({ error: "ERROR!!!" });

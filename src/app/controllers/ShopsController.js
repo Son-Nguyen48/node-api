@@ -58,6 +58,18 @@ class ShopsController {
       res.json(result);
     });
   }
+
+  //GET /accounts
+  getAllAccounts(req, res, next) {
+    Shops.findOne({
+      accounts: []
+    })
+      .then((account) => {
+        console.log(account, "account");
+        res.json(account);
+      })
+      .catch(next);
+  }
 }
 
 module.exports = new ShopsController();

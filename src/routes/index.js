@@ -2,6 +2,7 @@ const searchRouter = require("./search");
 const newsRouter = require("./news");
 const nuxtShopRouter = require("./nuxtShop");
 const shopRouter = require("./shops");
+const productRouter = require("./products");
 const siteRouter = require("./site");
 
 function route(app) {
@@ -17,6 +18,7 @@ function route(app) {
   app.use("/news", newsRouter);
   app.use("/nuxtShops", nuxtShopRouter);
   app.use("/shops", shopRouter);
+  app.use("/products", productRouter);
   app.use("/", siteRouter);
 
   // app.post("/search", (req, res) => {
