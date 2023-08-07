@@ -1,15 +1,15 @@
 const NuxtShops = require("../models/NuxtShops");
 class NuxtShopController {
   //[GET] /news
-  index(req, res) {
+  index(req, res, next) {
     NuxtShops.find()
-      .then((newItem, err) => {
-        console.log(newItem, "newItem");
-        res.json(newItem);
-      })
-      .catch(() => {
-        res.status(400).json({ error: "ERROR!!!" });
-      });
+      .then((nuxtApi) => res.json(nuxtApi))
+      .catch(
+        next
+        // () => {
+        //   res.status(400).json({ error: "ERROR!!!" });
+        // }
+      );
     // res.render("news");
   }
 
@@ -17,8 +17,8 @@ class NuxtShopController {
   showOrders(req, res) {
     NuxtShops.find()
       .then((newItem, err) => {
-        console.log(newItem[1], "orders");
-        res.json(newItem[1]);
+        const result = newItem.map((items) => items.toObject());
+        res.json(result[1].orders);
       })
       .catch(() => {
         res.status(400).json({ error: "ERROR!!!" });
