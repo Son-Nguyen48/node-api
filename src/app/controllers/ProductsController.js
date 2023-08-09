@@ -1,12 +1,14 @@
-const Products = require("../models/Products");
+const Products = require('../models/Products');
 class ProductsController {
   //[GET] /news
+
   index(req, res, next) {
     Products.find()
-      .then((nuxtApi) => {
+      .then(nuxtApi => {
         //Biến đổi object mongooes tạo ra (nuxtApi) thành object có thể thao tác được bình thường
-        nuxtApi = nuxtApi.map((nuxtApi) => nuxtApi.toObject());
-        res.render("products", { nuxtApi });
+        console.log('go here');
+        nuxtApi = nuxtApi.map(nuxtApi => nuxtApi.toObject());
+        res.render('products', { nuxtApi });
       })
       .catch(
         next
@@ -17,27 +19,40 @@ class ProductsController {
     // res.render("news");
   }
   //[GET] /products/create
+
   create(req, res, next) {
     Products.find()
-      .then((nuxtApi) => {
-        res.render("create");
+      .then(nuxtApi => {
+        res.render('create');
       })
       .catch(next);
   }
 
   //[GET] /products/:id/edit
+
   edit(req, res, next) {
     Products.findById(req.params.id)
-      .then((nuxtApi) => {
+      .then(nuxtApi => {
         nuxtApi = nuxtApi.toObject();
-        res.render("edit", { nuxtApi });
+        res.render('edit', { nuxtApi });
+      })
+      .catch(next);
+  }
+
+  //[DELETE] /products/:id
+
+  delete(req, res, next) {
+    Products.deleteOne({ _id: req.params.id })
+      .then(() => {
+        res.redirect('back');
       })
       .catch(next);
   }
   //[PUT] /products/:id
+
   update(req, res, next) {
     Products.updateOne({ _id: req.params.id }, req.body)
-      .then(() => res.redirect("/products"))
+      .then(() => res.redirect('/products'))
       .catch(next);
   }
 

@@ -10,20 +10,87 @@
   </thead>
   <tbody>
     {{#each nuxtApi}}
-      <tr>
-        <th scope="row">{{sum @index 1}}</th>
-        <td>{{this.name}}</td>
-        <td>{{this.gender}}</td>
-        <td>{{this.price}}</td>
-        <td>
-          <button class="btn">
-            <a href="/products/{{this._id}}/edit">Edit</a>
-          </button>
-          <button class="btn">
-            <a href="/products/{{this._id}}">Delete</a>
-          </button>
-        </td>
-      </tr>
+    <tr>
+      <th scope="row">{{sum @index 1}}</th>
+      <td>{{this.name}}</td>
+      <td>{{this.gender}}</td>
+      <td>{{this.price}}</td>
+      <td>
+        <button class="btn">
+          <a href="/products/{{this._id}}/edit">Edit</a>
+        </button>
+        <button
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#delete_product_modal"
+          data-id="{{this._id}}"
+        >
+          <a href="#">Delete</a>
+        </button>
+      </td>
+    </tr>
     {{/each}}
   </tbody>
 </table>
+
+{{! Modal delete notification }}
+
+<div
+  class="modal fade"
+  id="delete_product_modal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Cẩn thận!</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        Bạn có thực sự muốn xoá bản ghi này hay không?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Huỷ
+        </button>
+        <button
+          id="btn_delete"
+          type="button"
+          data-id="{{this._id}}"
+          class="btn btn-danger"
+        >
+          Xoá
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{! Delete hidden form }}
+
+<form name="form_delete" method="POST"></form>
+
+<script>
+  const delete_product_modal = document.getElementById('delete_product_modal');
+  let id = 0;
+  var deleteForm = document.forms['form_delete'];
+  if (delete_product_modal) {
+    delete_product_modal.addEventListener('show.bs.modal', event => {
+      const button = event.relatedTarget;
+      id = button.getAttribute('data-id');
+      console.log(id, 'id');
+    });
+  }
+  const btnDelete = document.getElementById('btn_delete');
+  btnDelete.addEventListener('click', function () {
+    deleteForm.action = `/products/${id}?_method=DELETE`;
+    deleteForm.submit();
+  });
+</script>

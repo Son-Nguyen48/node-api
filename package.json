@@ -5,8 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "nodemon --inspect src/index.js",
-    "sass-render": "sass --watch src/resources/scss/app.scss  src/public/css/app.css",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "sass-render": "sass --watch src/resources/scss/app.scss  src/public/css/app.css"
   },
   "keywords": [
     "node",
@@ -16,9 +15,12 @@
   "author": "Son2k",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-handlebars": "^7.0.7",
+    "express-validator": "^7.0.1",
     "method-override": "^3.0.0",
+    "mongodb": "^5.7.0",
     "mongoose": "^7.4.2"
   },
   "devDependencies": {
